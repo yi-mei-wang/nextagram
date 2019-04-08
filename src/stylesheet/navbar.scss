@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "Billabong";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Billabong"), url("../fonts/Billabong.woff") format("woff");
+}
+
+.navBarDiv {
+  input.navBarSearch {
+    background: #f3f3f3;
+  }
+}
+
+#icontainer {
+  padding: 10px;
+  margin: 10px;
+  height: 35px;
+  border-right: 1.5px solid black;
+}
+
+#icon {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 480px) {
+  #searchBar {
+    display: none;
+  }
+}
