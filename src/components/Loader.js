@@ -6,7 +6,7 @@ const Loader = props => {
   if (props.loading) {
     return (
       <div id="loader-div">
-        <img src={LoaderGif} id="loader-gif" />
+        <img src={LoaderGif} id="loader-gif" alt="Loader gif" />
       </div>
     );
   } else {

@@ -1,8 +1,8 @@
 import axios from "axios";
-// import Image from "react-graceful-image";
+import Image from "react-graceful-image";
 import React from "react";
 
-// import NoImages from "../images/nopostsyet.png";
+import NoImages from "../images/nopostsyet.png";
 import Like from "../images/like.png";
 
 class UserImages extends React.Component {
@@ -29,34 +29,39 @@ class UserImages extends React.Component {
   }
 
   render() {
-    // if (this.state.images.length !== 0) {
-    return (
-      <div className="text-center">
-        {this.state.images.map(image => {
-          return (
-            <div className="d-inline-block mx-auto">
-              <div
-                className="user-img"
-                style={{
-                  backgroundImage: `url(${image})`
-                }}
-              >
-                <div className="heart">
-                  <img src={Like} className="like" alt="Like icon" />
+    if (this.state.images.length !== 0) {
+      return (
+        <div className="text-center">
+          {this.state.images.map(image => {
+            return (
+              <div className="d-inline-block mx-auto">
+                <div className="user-img">
+                  <Image
+                    src={image}
+                    width="100%"
+                    height="100%"
+                    alt="My awesome image"
+                    style={{ objectFit: "cover" }}
+                  />
+
+                  <div className="heart">
+                    <img src={Like} className="like" alt="Like icon" />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-    // } else {
-    //   return null;
-    // <div className="d-inline-block">
-    //   <div className="user-img">
-    //     <img src={NoImages} className="no-img" />
-    //   </div>
-    // </div>
+            );
+          })}
+        </div>
+      );
+    } else {
+      return (
+        <div className="d-inline-block">
+          <div className="user-img">
+            <img src={NoImages} className="no-img" alt="No posts yet" />
+          </div>
+        </div>
+      );
+    }
   }
 }
 

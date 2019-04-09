@@ -1,8 +1,42 @@
-.profile-img-big {
-  padding: 20px;
-  // margin: 20px;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  vertical-align: middle;
+.profile-page-container {
+  width: 80vw;
+  // border: 1px solid #f3f3f3;
+  // border-radius: 5px;
+  // background-color: white;
+}
+
+.user-imgs {
+  border-top: 1.5px solid #f0f0f0;
+}
+
+.username {
+  padding-left: 15px;
+}
+
+// .profile-img-big {
+//   width: 180px;
+//   height: 180px;
+//   border-radius: 50%;
+//   vertical-align: middle;
+// }
+
+// .profile-page-username {
+//   font-size: 2rem;
+// }
+
+// .user-info {
+//   background-color: red;
+//   margin: 10px;
+// }
+
+// .user-text {
+//   height: 30px;
+//   display: flex;
+//   align-items: flex-end;
+// }
+
+.follow-button {
+  color: red;
+  padding: 0px;
+  font-size: 1rem;
 }

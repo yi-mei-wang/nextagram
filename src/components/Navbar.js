@@ -51,11 +51,12 @@ class NavBar extends React.Component {
               className="d-flex justify-content-center align-items-center"
               id="icontainer"
             >
-              <img className="mr-2" src={Camera} id="icon" />
+              <img className="mr-2" src={Camera} id="icon" alt="Camera logo" />
             </div>
             Nextagram
           </NavbarBrand>
-          <FormGroup className="my-auto" id="searchBar">
+
+          <FormGroup className="my-auto mx-auto" id="searchBar">
             <Form>
               <Input
                 type="text"
@@ -64,6 +65,7 @@ class NavBar extends React.Component {
               />
             </Form>
           </FormGroup>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

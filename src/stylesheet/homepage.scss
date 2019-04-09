@@ -14,11 +14,16 @@
   background-color: white;
 }
 
-.username:hover {
-  cursor: pointer;
+.username {
+  a {
+    color: black;
+  }
+  &hover {
+    cursor: pointer;
+  }
 }
 
-// .no-img {
-//   width: 250px;
-//   height: 250px;
-// }
+.no-img {
+  width: 250px;
+  height: 250px;
+}

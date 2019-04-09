@@ -1,11 +1,10 @@
 .user-img {
   width: 250px;
   height: 250px;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
   /* display: inline-block; */
   margin: 15px;
+  object-fit: cover;
+  position: relative;
 
   &:hover {
     opacity: 0.8;
