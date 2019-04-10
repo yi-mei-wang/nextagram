@@ -1,8 +1,9 @@
+// LIBRARIES
 import axios from "axios";
 import React from "react";
 import { Route } from "react-router-dom";
 // STYLESHEETS
-import "./stylesheet/App.scss";
+import "./stylesheets/App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 // PAGES
 import Homepage from "./pages/Homepage";
@@ -25,7 +26,6 @@ class App extends React.Component {
       .get("https://insta.nextacademy.com/api/v1/users/")
       .then(result => {
         // If successful, we do stuffs with 'result'
-        // console.log(result.data);
         this.setState({
           users: result.data,
           isLoading: false
@@ -41,23 +41,19 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
-        <div>
-          <Loader loading={this.state.isLoading} />
-          <Route
-            exact
-            path="/"
-            component={props => (
-              <Homepage {...props} users={this.state.users} />
-            )}
-          />
-          {/* Because route has its own props too!! */}
-          <Route
-            path="/users/:id"
-            component={props => (
-              <UserProfilePage {...props} users={this.state.users} />
-            )}
-          />
-        </div>
+        <Loader loading={this.state.isLoading} />
+        <Route
+          exact
+          path="/"
+          component={props => <Homepage {...props} users={this.state.users} />}
+        />
+        {/* Because route has its own props too!! */}
+        <Route
+          path="/users/:id"
+          component={props => (
+            <UserProfilePage {...props} users={this.state.users} />
+          )}
+        />
       </div>
     );
   }

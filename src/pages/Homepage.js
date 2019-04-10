@@ -1,31 +1,35 @@
+// LIBRARIES
 import React from "react";
+// import axios from "axios";
 import { Link } from "react-router-dom";
-// import Image from "react-graceful-image";
-// STYLESHEETS
-import "../stylesheet/App.scss";
-// PAGES
-// import UserProfilePage from "./UserProfilePage";
-
+// STYLESHEET
+import "../stylesheets/App.scss";
 // USER-DEFINED COMPONENTS
-import UserImages from "../components/UserImages";
+// import Loader from "../components/Loader";
+import UserImages from "../containers/UserImages";
+import WithCall from "../components/withCall";
 
-const Homepage = ({ users }) => {
+const Homepage = props => {
   return (
     <div>
-      {users.map(user => {
+      {/* <Login buttonLabel={"TEST"} /> */}
+      {props.users.map(user => {
+        const UserImagesWithCall = WithCall(UserImages);
         return (
           <div key={user.id} className="img-container d-block mx-auto my-5">
             <div className="d-inline-block">
               <img
                 src={user.profileImage}
                 className="profile-img-small"
-                alt="User profile"
+                alt="Profile"
               />
               <span className="d-inline-block font-weight-bold username">
-                <Link to={`/users/${user.id}`}>{user.username}</Link>
+                <Link to={`users/${user.id}`}>{user.username}</Link>
               </span>
             </div>
-            <UserImages id={user.id} />
+            <div>
+              <UserImagesWithCall userId={user.id} />
+            </div>
           </div>
         );
       })}

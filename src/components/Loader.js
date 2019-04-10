@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheet/App.scss";
+import "../stylesheets/App.scss";
 import LoaderGif from "../images/loader.gif";
 
 const Loader = props => {

@@ -1,5 +1,8 @@
 .profile-page-container {
   width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   // border: 1px solid #f3f3f3;
   // border-radius: 5px;
   // background-color: white;
@@ -11,6 +14,15 @@
 
 .username {
   padding-left: 15px;
+}
+
+#settings-gear {
+  width: 20px;
+  height: 20px;
+
+  &hover {
+    cursor: pointer;
+  }
 }
 
 // .profile-img-big {

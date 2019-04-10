@@ -1,3 +1,4 @@
+// LIBRARIES
 import React from "react";
 import {
   Collapse,
@@ -15,6 +16,9 @@ import {
   FormGroup,
   Input
 } from "reactstrap";
+// PAGES
+import LoginOrSignUp from "./LoginOrSignUp";
+// IMAGES
 import Camera from "../images/camera.png";
 
 class NavBar extends React.Component {
@@ -82,9 +86,24 @@ class NavBar extends React.Component {
                   <DropdownItem>Likes</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <NavItem>
-                <NavLink href="/profile">Profile</NavLink>
-              </NavItem>
+
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Profile
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    <LoginOrSignUp buttonLabel={"Log In"} isLoginForm={true} />
+                  </DropdownItem>
+
+                  <DropdownItem className="divider">
+                    <LoginOrSignUp
+                      buttonLabel={"Sign Up"}
+                      isLoginForm={false}
+                    />
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
