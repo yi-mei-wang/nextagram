@@ -5,9 +5,8 @@ import Image from "react-graceful-image";
 import NoImages from "../images/nopostsyet.png";
 import LikeableImage from "../components/LikeableImage";
 
-const UserImages = props => {
-  console.log(props);
-  const { images } = props;
+const UserImages = ({ images }) => {
+  console.log(images);
   if (images.length !== 0) {
     return images.map((image, index) => {
       return (

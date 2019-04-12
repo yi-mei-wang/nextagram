@@ -1,0 +1,55 @@
+.form-buttons {
+  width: 80%;
+}
+
+.inline-div {
+  height: 20px;
+  width: 40%;
+}
+
+.inline-text {
+  width: 20%;
+  font-weight: 800;
+  color: grey;
+  text-align: center;
+}
+
+.phone-div {
+  width: 20vw;
+}
+
+.side-form {
+  background-color: white;
+  border: 1px solid #e6e6e6;
+}
+
+#brand {
+  font-family: "Billabong";
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+#slogan {
+  font-weight: 600;
+  color: grey;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .phone-div {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .empty-cont {
+    display: none;
+  }
+  .side-form,
+  .phone-div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

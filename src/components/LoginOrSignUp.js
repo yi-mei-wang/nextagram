@@ -1,6 +1,6 @@
 // LIBRARIES
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 // USER-DEFINED COMPONENTS
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -36,7 +36,7 @@ class LoginOrSignUp extends React.Component {
   render() {
     return (
       <div>
-        <div onClick={this.toggle}>{this.props.buttonLabel}</div>
+        <div onClick={this.toggle}>{this.props.label}</div>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
@@ -47,19 +47,17 @@ class LoginOrSignUp extends React.Component {
           </ModalHeader>
           <ModalBody>
             {this.state.isLoginForm ? (
-              <Login handleClick={this.handleClick} />
+              <Login
+                handleClick={this.handleClick}
+                setUser={this.props.setUser}
+              />
             ) : (
-              <SignUp handleClick={this.handleClick} />
+              <SignUp
+                handleClick={this.handleClick}
+                setUser={this.props.setUser}
+              />
             )}
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              {this.state.isLoginForm ? "Login" : "Sign Up"}
-            </Button>
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
         </Modal>
       </div>
     );

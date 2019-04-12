@@ -74,7 +74,12 @@ class NavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/discover/">Discover</NavLink>
+                <NavLink
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                >
+                  Discover
+                </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -92,16 +97,24 @@ class NavBar extends React.Component {
                   Profile
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    <LoginOrSignUp buttonLabel={"Log In"} isLoginForm={true} />
-                  </DropdownItem>
+                  {this.props.anon !== null ? (
+                    <>
+                      <DropdownItem className="divider">
+                        My Profile
+                      </DropdownItem>
+                      <DropdownItem>Sign Out</DropdownItem>
+                    </>
+                  ) : (
+                    <>
+                      <DropdownItem>
+                        <LoginOrSignUp label={"Log In"} isLoginForm={true} />
+                      </DropdownItem>
 
-                  <DropdownItem className="divider">
-                    <LoginOrSignUp
-                      buttonLabel={"Sign Up"}
-                      isLoginForm={false}
-                    />
-                  </DropdownItem>
+                      <DropdownItem className="divider">
+                        <LoginOrSignUp label={"Sign Up"} isLoginForm={false} />
+                      </DropdownItem>
+                    </>
+                  )}
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

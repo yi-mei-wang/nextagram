@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 // USER-DEFINED COMPONENTS
 import UserManagement from "../components/UserManagement";
 import UserImages from "../containers/UserImages";
@@ -6,12 +7,36 @@ import UserImages from "../containers/UserImages";
 import Settings from "../images/settings.png";
 
 class UserProfilePage extends React.Component {
-  render() {
-    const { images } = this.props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: []
+    };
+  }
 
+  componentDidMount() {
+    const { match } = this.props;
+
+    axios
+      .get(
+        `https://insta.nextacademy.com/api/v1/images/?userId=${match.params.id}`
+      )
+      .then(result => {
+        this.setState({ images: result.data });
+      })
+      .catch(error => {
+        console.log(`ERROR: ${error}`);
+      });
+  }
+
+  render() {
+    console.log(this.props);
     const userInfo = this.props.users.find(
       user => user.id === parseInt(this.props.match.params.id)
     );
+    console.log(userInfo);
+
+    const { images } = this.state;
 
     return (
       <div className="profile-page-container mx-auto mt-3 p-3 d-flex">
@@ -46,7 +71,9 @@ class UserProfilePage extends React.Component {
 
               <section className="row mt-3 d-flex flex-wrap">
                 <div className="col-3">
-                  <span className="font-weight-bold">{images.length}</span>{" "}
+                  <span className="font-weight-bold">
+                    {this.state.images.length} {this.state.length}{" "}
+                  </span>
                   posts
                 </div>
                 <div className="col-3">

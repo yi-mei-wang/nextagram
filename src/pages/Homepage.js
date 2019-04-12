@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "../stylesheets/App.scss";
 // USER-DEFINED COMPONENTS
 // import Loader from "../components/Loader";
-import UserImages from "../containers/UserImages";
+import UserCarousel from "../components/Carousel";
 import WithCall from "../components/withCall";
 
 const Homepage = props => {
@@ -14,7 +14,8 @@ const Homepage = props => {
     <div>
       {/* <Login buttonLabel={"TEST"} /> */}
       {props.users.map(user => {
-        const UserImagesWithCall = WithCall(UserImages);
+        const CarouselWithCall = WithCall(UserCarousel);
+        // const UserImagesWithCall = WithCall(UserImages);
         return (
           <div key={user.id} className="img-container d-block mx-auto my-5">
             <div className="d-inline-block">
@@ -28,7 +29,8 @@ const Homepage = props => {
               </span>
             </div>
             <div>
-              <UserImagesWithCall userId={user.id} />
+              {/* <UserImagesWithCall userId={user.id} /> */}
+              <CarouselWithCall userId={user.id} />
             </div>
           </div>
         );

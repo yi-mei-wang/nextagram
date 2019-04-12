@@ -17,7 +17,6 @@ const WithCall = WrappedComponent =>
           }`
         )
         .then(result => {
-          // console.log("hellelele", result.data);
           this.setState({ images: result.data });
         })
         .catch(error => {

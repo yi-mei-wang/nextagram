@@ -6,18 +6,21 @@ import { Route } from "react-router-dom";
 import "./stylesheets/App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 // PAGES
+import AnonHomepage from "./pages/AnonHomepage";
 import Homepage from "./pages/Homepage";
 import UserProfilePage from "./pages/UserProfilePage";
 // USER-DEFINED COMPONENTS
 import Loader from "./components/Loader";
 import NavBar from "./components/Navbar";
+import WithCall from "./components/withCall";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      isLoading: true
+      isLoading: true,
+      currentUser: null
     };
   }
 
@@ -37,26 +40,60 @@ class App extends React.Component {
       });
   }
 
+  setUser = () => {
+    const currentUser = localStorage.getItem("jwt");
+    if (currentUser) {
+      this.setState({
+        currentUser: currentUser
+      });
+    } else {
+      this.setState({
+        currentUser: null
+      });
+    }
+  };
+
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar anon={this.state.currentUser} />
         <Loader loading={this.state.isLoading} />
-        <Route
+        {/* <Route
           exact
           path="/"
           component={props => <Homepage {...props} users={this.state.users} />}
+        /> */}
+        <Route
+          exact
+          path="/"
+          component={
+            this.state.currentUser === null
+              ? props => (
+                  <AnonHomepage
+                    {...props}
+                    users={this.state.users}
+                    setUser={this.setUser}
+                  />
+                )
+              : props => <Homepage {...props} users={this.state.users} />
+          }
         />
         {/* Because route has its own props too!! */}
         <Route
           path="/users/:id"
           component={props => (
-            <UserProfilePage {...props} users={this.state.users} />
+            <UserProfilePageWithCall
+              {...props}
+              userId={props.match.params.id}
+              users={this.state.users}
+            />
           )}
         />
       </div>
     );
   }
 }
+
+const UserProfilePageWithCall = WithCall(UserProfilePage);
 
 export default App;
