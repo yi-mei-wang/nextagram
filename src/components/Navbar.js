@@ -18,7 +18,6 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 // USER-DEFINED COMPONENTS
-import LoginOrSignUp from "../containers/LoginOrSignUp";
 import SignOut from "../containers/SignOut";
 // IMAGES
 import Camera from "../images/camera.png";
@@ -62,7 +61,7 @@ class NavBar extends React.Component {
             Nextagram
           </NavbarBrand>
 
-          <FormGroup className="my-auto mx-auto col-4" id="searchBar">
+          <FormGroup className="my-auto mx-auto col-3" id="searchBar">
             <Form>
               <Input
                 type="text"
@@ -83,47 +82,39 @@ class NavBar extends React.Component {
                   Discover
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Notifications
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Follow Requests</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Likes</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              {this.props.anon !== null ? (
+                <>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      Notifications
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem>Follow Requests</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Likes</DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
 
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  My Profile
-                </DropdownToggle>
-                <DropdownMenu right>
-                  {this.props.anon !== null ? (
-                    <>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle className="nav-links" nav caret>
+                      My Profile
+                    </DropdownToggle>
+                    <DropdownMenu right>
                       <DropdownItem>
-                        <Link to="/profile">Profile Page</Link>
+                        <Link className="nav-links" to="/profile">
+                          Profile Page
+                        </Link>
                       </DropdownItem>
                       <DropdownItem className="divider" />
                       <DropdownItem>
-                        <Link to="/">
+                        <Link className="nav-links" to="/">
                           <SignOut setUser={this.props.setUser} />
                         </Link>
                       </DropdownItem>
-                    </>
-                  ) : (
-                    <>
-                      <DropdownItem>
-                        <LoginOrSignUp label={"Log In"} isLoginForm={true} />
-                      </DropdownItem>
-
-                      <DropdownItem className="divider">
-                        <LoginOrSignUp label={"Sign Up"} isLoginForm={false} />
-                      </DropdownItem>
-                    </>
-                  )}
-                </DropdownMenu>
-              </UncontrolledDropdown>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </>
+              ) : null}
             </Nav>
           </Collapse>
         </Navbar>
@@ -157,7 +148,7 @@ is licensed by{" "}
   CC 3.0 BY
 </a>
 </div> */
-// }
+//}
 
 // <div>
 //   Icons made by{" "}

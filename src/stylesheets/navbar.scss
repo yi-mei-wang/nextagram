@@ -20,6 +20,15 @@
   cursor: pointer;
 }
 
+.nav-links {
+  color: #212529;
+
+  &hover {
+    color: #212529;
+    text-decoration: none;
+  }
+}
+
 #icontainer {
   padding: 10px;
   margin: 10px;

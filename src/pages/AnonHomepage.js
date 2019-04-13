@@ -13,7 +13,7 @@ const AnonHomepage = props => {
         </a>
       </div>
       <div className="side-form col-lg-4 col-sm-7 col-md-6 mt-5">
-        <p id="brand">Nextagram</p>
+        <p id="brand">Meistagram</p>
         <p id="slogan">Sign up to see photos and videos from your friends.</p>
         <div className="text-center">
           <Button className="form-buttons my-5 bg-primary font-weight-bold">
