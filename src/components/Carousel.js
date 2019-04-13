@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Carousel, CarouselItem, CarouselControl } from "reactstrap";
-// import Image from "react-graceful-image";
+import Image from "react-graceful-image";
 import NoImages from "../images/nopostsyet.png";
-
-// import LikeableImage from "./LikeableImage";
+import LikeableImage from "./LikeableImage";
 
 class UserCarousel extends Component {
   constructor(props) {
@@ -69,13 +68,14 @@ class UserCarousel extends Component {
             onExited={this.onExited}
             key={image}
           >
-            <img
+            <Image
               height="100%"
               width="100%"
               src={image}
               alt="User's posts"
               className="carousel-img"
             />
+            <LikeableImage />
           </CarouselItem>
         );
       });

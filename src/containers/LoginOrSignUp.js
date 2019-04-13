@@ -10,7 +10,7 @@ class LoginOrSignUp extends React.Component {
     super(props);
     this.state = {
       modal: false,
-      isLoginForm: this.props.isLoginForm
+      isLoginForm: true
     };
   }
 
@@ -27,30 +27,35 @@ class LoginOrSignUp extends React.Component {
     });
   };
 
-  // Should call something else
-  // componentDidMount() {
-  //   this.setState({
-  //     isLoginForm: this.props.isLoginForm
-  //   });
-  // }
+  componentDidMount() {
+    this.setState({
+      isLoginForm: this.props.isLoginForm
+    });
+  }
 
   render() {
-    const { modal, isLoginForm } = this.state;
-    const { className, setUser, label } = this.props;
-    console.log(this.props.isLoginForm);
-    console.log(this.state.isLoginForm);
     return (
       <div>
-        <div onClick={this.toggle}>{label}</div>
-        <Modal isOpen={modal} toggle={this.toggle} className={className}>
+        <div onClick={this.toggle}>{this.props.label}</div>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+        >
           <ModalHeader toggle={this.toggle}>
-            {isLoginForm ? "Login" : "Sign Up"}
+            {this.state.isLoginForm ? "Login" : "Sign Up"}
           </ModalHeader>
           <ModalBody>
-            {isLoginForm ? (
-              <Login handleClick={this.handleClick} setUser={setUser} />
+            {this.state.isLoginForm ? (
+              <Login
+                handleClick={this.handleClick}
+                setUser={this.props.setUser}
+              />
             ) : (
-              <SignUp handleClick={this.handleClick} setUser={setUser} />
+              <SignUp
+                handleClick={this.handleClick}
+                setUser={this.props.setUser}
+              />
             )}
           </ModalBody>
         </Modal>

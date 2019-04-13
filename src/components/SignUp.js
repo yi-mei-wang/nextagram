@@ -118,11 +118,6 @@ class SignUp extends React.Component {
               Sign Up
             </Button>
           </div>
-          <div className="col-2">
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
-            </Button>
-          </div>
         </div>
       </Form>
     );

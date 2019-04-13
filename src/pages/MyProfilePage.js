@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Image from "react-graceful-image";
 
 class MyProfilePage extends React.Component {
   state = {
@@ -25,7 +26,7 @@ class MyProfilePage extends React.Component {
 
   render() {
     return this.state.images.map(image => {
-      return <img src={image} alt="My pictures" />;
+      return <Image src={image} alt="My pictures" />;
     });
   }
 }

@@ -33,9 +33,7 @@ class Login extends React.Component {
           .then(response => {
             if (response.status === 201) {
               localStorage.setItem("jwt", response.data.auth_token);
-              console.log(localStorage, this.state);
               this.props.setUser();
-              // this.redirectPage();
             } else {
               alert("please check your email/password");
             }
@@ -46,10 +44,6 @@ class Login extends React.Component {
       }
     });
   };
-
-  // redirectPage = () => {
-  //   return <Redirect to="/" />;
-  // };
 
   render() {
     const { email, password } = this.state;
@@ -90,11 +84,6 @@ class Login extends React.Component {
               onClick={this.handleSubmit}
             >
               Log In
-            </Button>
-          </div>
-          <div className="col-2">
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
             </Button>
           </div>
         </div>

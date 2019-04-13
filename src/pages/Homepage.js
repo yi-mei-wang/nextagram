@@ -12,10 +12,8 @@ import WithCall from "../components/withCall";
 const Homepage = props => {
   return (
     <div>
-      {/* <Login buttonLabel={"TEST"} /> */}
       {props.users.map(user => {
         const CarouselWithCall = WithCall(UserCarousel);
-        // const UserImagesWithCall = WithCall(UserImages);
         return (
           <div key={user.id} className="img-container d-block mx-auto my-5">
             <div className="d-inline-block">
@@ -29,7 +27,6 @@ const Homepage = props => {
               </span>
             </div>
             <div>
-              {/* <UserImagesWithCall userId={user.id} /> */}
               <CarouselWithCall userId={user.id} />
             </div>
           </div>

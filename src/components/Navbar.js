@@ -16,8 +16,10 @@ import {
   FormGroup,
   Input
 } from "reactstrap";
-// PAGES
-import LoginOrSignUp from "./LoginOrSignUp";
+import { Link } from "react-router-dom";
+// USER-DEFINED COMPONENTS
+import LoginOrSignUp from "../containers/LoginOrSignUp";
+import SignOut from "../containers/SignOut";
 // IMAGES
 import Camera from "../images/camera.png";
 
@@ -49,7 +51,7 @@ class NavBar extends React.Component {
             id="navBarMiddle"
             href="/"
             style={navBar}
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex align-items-center col-4"
           >
             <div
               className="d-flex justify-content-center align-items-center"
@@ -60,7 +62,7 @@ class NavBar extends React.Component {
             Nextagram
           </NavbarBrand>
 
-          <FormGroup className="my-auto mx-auto" id="searchBar">
+          <FormGroup className="my-auto mx-auto col-4" id="searchBar">
             <Form>
               <Input
                 type="text"
@@ -71,7 +73,7 @@ class NavBar extends React.Component {
           </FormGroup>
 
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse className="col-4" isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink
@@ -94,15 +96,20 @@ class NavBar extends React.Component {
 
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Profile
+                  My Profile
                 </DropdownToggle>
                 <DropdownMenu right>
                   {this.props.anon !== null ? (
                     <>
-                      <DropdownItem className="divider">
-                        My Profile
+                      <DropdownItem>
+                        <Link to="/profile">Profile Page</Link>
                       </DropdownItem>
-                      <DropdownItem>Sign Out</DropdownItem>
+                      <DropdownItem className="divider" />
+                      <DropdownItem>
+                        <Link to="/">
+                          <SignOut setUser={this.props.setUser} />
+                        </Link>
+                      </DropdownItem>
                     </>
                   ) : (
                     <>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
-import LoginOrSignUp from "../components/LoginOrSignUp";
+import LoginOrSignUp from "../containers/LoginOrSignUp";
 import Phone from "../images/screenshot.png";
 
 const AnonHomepage = props => {

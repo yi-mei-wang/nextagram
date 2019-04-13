@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AnonHomepage from "./pages/AnonHomepage";
 import Homepage from "./pages/Homepage";
 import UserProfilePage from "./pages/UserProfilePage";
+import MyProfilePage from "./pages/MyProfilePage";
 // USER-DEFINED COMPONENTS
 import Loader from "./components/Loader";
 import NavBar from "./components/Navbar";
@@ -56,13 +57,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar anon={this.state.currentUser} />
+        <NavBar anon={this.state.currentUser} setUser={this.setUser} />
         <Loader loading={this.state.isLoading} />
-        {/* <Route
-          exact
-          path="/"
-          component={props => <Homepage {...props} users={this.state.users} />}
-        /> */}
         <Route
           exact
           path="/"
@@ -87,6 +83,13 @@ class App extends React.Component {
               userId={props.match.params.id}
               users={this.state.users}
             />
+          )}
+        />
+        <Route
+          exact
+          path="/profile"
+          component={props => (
+            <MyProfilePage {...props} users={this.state.users} />
           )}
         />
       </div>
