@@ -88,9 +88,17 @@ class App extends React.Component {
         <Route
           exact
           path="/profile"
-          component={props => (
-            <MyProfilePage {...props} users={this.state.users} />
-          )}
+          component={
+            this.state.currentUser === null
+              ? props => (
+                  <AnonHomepage
+                    {...props}
+                    users={this.state.users}
+                    setUser={this.setUser}
+                  />
+                )
+              : props => <MyProfilePage {...props} users={this.state.users} />
+          }
         />
       </div>
     );

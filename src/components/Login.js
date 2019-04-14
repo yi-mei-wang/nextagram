@@ -33,6 +33,7 @@ class Login extends React.Component {
           .then(response => {
             if (response.status === 201) {
               localStorage.setItem("jwt", response.data.auth_token);
+              localStorage.setItem("id", response.data.user.id);
               this.props.setUser();
             } else {
               alert("please check your email/password");

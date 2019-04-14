@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Image from "react-graceful-image";
+// import Image from "react-graceful-image";
+import UserProfilePage from "../pages/UserProfilePage";
 
 class MyProfilePage extends React.Component {
   state = {
@@ -25,9 +26,13 @@ class MyProfilePage extends React.Component {
   }
 
   render() {
-    return this.state.images.map(image => {
-      return <Image src={image} alt="My pictures" />;
-    });
+    return (
+      <UserProfilePage
+        images={this.state.images}
+        users={this.props.users}
+        match={this.props.match}
+      />
+    );
   }
 }
 

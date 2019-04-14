@@ -10,7 +10,9 @@ class UserProfilePage extends React.Component {
     const { images } = this.props;
 
     const userInfo = this.props.users.find(
-      user => user.id === parseInt(this.props.match.params.id)
+      user =>
+        user.id === parseInt(this.props.match.params.id) ||
+        user.id === parseInt(localStorage.getItem("id"))
     );
 
     return (
@@ -50,10 +52,16 @@ class UserProfilePage extends React.Component {
                   posts
                 </div>
                 <div className="col-3">
-                  <span className="font-weight-bold">123</span> followers
+                  <span className="font-weight-bold">
+                    {Math.floor(Math.random() * 1000)}
+                  </span>{" "}
+                  followers
                 </div>
                 <div className="col-3">
-                  <span className="font-weight-bold">123</span> following
+                  <span className="font-weight-bold">
+                    {Math.floor(Math.random() * 1000)}
+                  </span>{" "}
+                  following
                 </div>
               </section>
 

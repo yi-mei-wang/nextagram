@@ -50,7 +50,7 @@ class NavBar extends React.Component {
             id="navBarMiddle"
             href="/"
             style={navBar}
-            className="d-flex align-items-center col-4"
+            className="d-flex align-items-center col-3 col-sm-5"
           >
             <div
               className="d-flex justify-content-center align-items-center"
@@ -58,10 +58,10 @@ class NavBar extends React.Component {
             >
               <img className="mr-2" src={Camera} id="icon" alt="Camera logo" />
             </div>
-            Nextagram
+            Meistagram
           </NavbarBrand>
 
-          <FormGroup className="my-auto mx-auto col-3" id="searchBar">
+          <FormGroup className="my-auto mx-auto col-2" id="searchBar">
             <Form>
               <Input
                 type="text"
@@ -72,7 +72,7 @@ class NavBar extends React.Component {
           </FormGroup>
 
           <NavbarToggler onClick={this.toggle} />
-          <Collapse className="col-4" isOpen={this.state.isOpen} navbar>
+          <Collapse className="col-sm-5" isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink
@@ -125,7 +125,7 @@ class NavBar extends React.Component {
 
 const navBar = {
   fontFamily: "Billabong",
-  fontSize: "2rem"
+  fontSize: "2em"
 };
 
 export default NavBar;

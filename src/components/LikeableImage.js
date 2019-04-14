@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Like from "../images/like.png";
+import Like from "../images/heart.png";
 
 class LikeableImage extends Component {
   state = {

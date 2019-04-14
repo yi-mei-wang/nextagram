@@ -30,8 +30,9 @@
 }
 
 .heart {
-  height: 80%;
-  width: 80%;
-  animation: fadeOut 1s;
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+  animation: bounce 1s;
   animation-fill-mode: forwards;
 }
