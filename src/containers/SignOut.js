@@ -1,15 +1,20 @@
 import React from "react";
+import { SetUserConsumer } from "../providers/SetUserProvider";
 
-const SignOut = props => {
+const SignOut = () => {
   return (
-    <div
-      onClick={() => {
-        localStorage.removeItem("jwt");
-        props.setUser();
-      }}
-    >
-      Sign Out
-    </div>
+    <SetUserConsumer>
+      {context => (
+        <div
+          onClick={() => {
+            localStorage.removeItem("jwt");
+            context.setUser();
+          }}
+        >
+          Sign Out
+        </div>
+      )}
+    </SetUserConsumer>
   );
 };
 

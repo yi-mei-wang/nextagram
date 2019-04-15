@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { SetUserConsumer } from "../providers/SetUserProvider";
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,34 +18,39 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = e => {
-    // Prevent submission if any of the fields are empty
-    const { password, email } = this.state;
-    const stateValues = Object.values(this.state);
-    stateValues.forEach(value => {
-      if (value === "") {
-        e.preventDefault();
-      } else {
-        axios
-          .post("https://insta.nextacademy.com/api/v1/login", {
-            email: email,
-            password: password
-          })
-          .then(response => {
-            if (response.status === 201) {
-              localStorage.setItem("jwt", response.data.auth_token);
-              localStorage.setItem("id", response.data.user.id);
-              this.props.setUser();
-            } else {
-              alert("please check your email/password");
-            }
-          })
-          .catch(error => {
-            console.log("Error ", error);
-          });
-      }
-    });
-  };
+  handleSubmit = e => (
+    <SetUserConsumer>
+      {context => {
+        // Prevent submission if any of the fields are empty
+        const { password, email } = this.state;
+        const stateValues = Object.values(this.state);
+        stateValues.forEach(value => {
+          if (value === "") {
+            e.preventDefault();
+          } else {
+            axios
+              .post("https://insta.nextacademy.com/api/v1/login", {
+                email,
+                password
+              })
+              .then(response => {
+                if (response.status === 201) {
+                  localStorage.setItem("jwt", response.data.auth_token);
+                  localStorage.setItem("id", response.data.user.id);
+                  context.setUser();
+                  console.log("getitem", localStorage.getItem("jwt"));
+                } else {
+                  alert("please check your email/password");
+                }
+              })
+              .catch(error => {
+                console.log("Error ", error);
+              });
+          }
+        });
+      }}
+    </SetUserConsumer>
+  );
 
   render() {
     const { email, password } = this.state;
@@ -82,7 +88,11 @@ class Login extends React.Component {
             <Button
               color="primary"
               disabled={!isEnabled}
-              onClick={this.handleSubmit}
+              onClick={e => {
+                // First function runs second, causing problems
+                this.handleSubmit(e);
+                // setTimeout(context.setUser(), 5000);
+              }}
             >
               Log In
             </Button>

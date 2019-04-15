@@ -47,15 +47,9 @@ class LoginOrSignUp extends React.Component {
           </ModalHeader>
           <ModalBody>
             {this.state.isLoginForm ? (
-              <Login
-                handleClick={this.handleClick}
-                setUser={this.props.setUser}
-              />
+              <Login handleClick={this.handleClick} />
             ) : (
-              <SignUp
-                handleClick={this.handleClick}
-                setUser={this.props.setUser}
-              />
+              <SignUp handleClick={this.handleClick} />
             )}
           </ModalBody>
         </Modal>
