@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { SetUserConsumer } from "../providers/SetUserProvider";
 
 class Login extends React.Component {
   constructor(props) {
@@ -18,39 +17,34 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = e => (
-    <SetUserConsumer>
-      {context => {
-        // Prevent submission if any of the fields are empty
-        const { password, email } = this.state;
-        const stateValues = Object.values(this.state);
-        stateValues.forEach(value => {
-          if (value === "") {
-            e.preventDefault();
-          } else {
-            axios
-              .post("https://insta.nextacademy.com/api/v1/login", {
-                email,
-                password
-              })
-              .then(response => {
-                if (response.status === 201) {
-                  localStorage.setItem("jwt", response.data.auth_token);
-                  localStorage.setItem("id", response.data.user.id);
-                  context.setUser();
-                  console.log("getitem", localStorage.getItem("jwt"));
-                } else {
-                  alert("please check your email/password");
-                }
-              })
-              .catch(error => {
-                console.log("Error ", error);
-              });
-          }
-        });
-      }}
-    </SetUserConsumer>
-  );
+  handleSubmit = e => {
+    // Prevent submission if any of the fields are empty
+    const { password, email } = this.state;
+    const stateValues = Object.values(this.state);
+    stateValues.forEach(value => {
+      if (value === "") {
+        e.preventDefault();
+      } else {
+        axios
+          .post("https://insta.nextacademy.com/api/v1/login", {
+            email,
+            password
+          })
+          .then(response => {
+            if (response.status === 201) {
+              localStorage.setItem("jwt", response.data.auth_token);
+              localStorage.setItem("id", response.data.user.id);
+              this.props.setUser(response.data);
+            } else {
+              alert("please check your email/password");
+            }
+          })
+          .catch(error => {
+            console.log("Error ", error.response.data.message);
+          });
+      }
+    });
+  };
 
   render() {
     const { email, password } = this.state;

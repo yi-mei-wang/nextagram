@@ -14,7 +14,11 @@ import MyProfilePage from "./pages/MyProfilePage";
 import Loader from "./components/Loader";
 import NavBar from "./components/Navbar";
 import WithCall from "./components/withCall";
-import { SetUserProvider } from "./providers/SetUserProvider";
+// import { SetUserProvider } from "./providers/SetUserProvider";
+
+const SetUserContext = React.createContext();
+
+export const SetUserConsumer = SetUserContext.Consumer;
 
 class App extends React.Component {
   constructor(props) {
@@ -26,21 +30,23 @@ class App extends React.Component {
     };
   }
 
-  setUser = () => {
-    console.log("hello");
-    const currentUser = localStorage.getItem("jwt");
-    console.log("currentuser", currentUser);
+  setUser = currentUser => {
+    // console.log("hello");
+    // const currentUser = localStorage.getItem("jwt");
+    // console.log("currentuser", currentUser);
     if (currentUser) {
       console.log("going");
       this.setState({
-        currentUser: currentUser
-      });
-    } else {
-      console.log("wrong");
-      this.setState({
-        currentUser: null
+        currentUser
       });
     }
+  };
+
+  removeUser = () => {
+    localStorage.removeItem("jwt");
+    this.setState({
+      currentUser: null
+    });
   };
 
   componentDidMount() {
@@ -63,7 +69,9 @@ class App extends React.Component {
     const currentUser = localStorage.getItem("jwt");
 
     return (
-      <SetUserProvider state={this.state} setUser={this.setUser}>
+      <SetUserContext.Provider
+        value={{ setUser: this.setUser, removeUser: this.removeUser }}
+      >
         <div>
           <NavBar anon={currentUser} />
           <Loader loading={this.state.isLoading} />
@@ -97,7 +105,7 @@ class App extends React.Component {
             }
           />
         </div>
-      </SetUserProvider>
+      </SetUserContext.Provider>
     );
   }
 }
