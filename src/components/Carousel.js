@@ -67,7 +67,6 @@ class UserCarousel extends Component {
             onExiting={this.onExiting}
             onExited={this.onExited}
             key={image}
-            height="400px"
           >
             <Image
               height="100%"

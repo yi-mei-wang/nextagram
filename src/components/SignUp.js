@@ -39,14 +39,12 @@ class SignUp extends React.Component {
       })
       .then(response => {
         console.log(response);
-        if (response.status === 201) {
-          localStorage.setItem("jwt", response.data.auth_token);
-          localStorage.setItem("id", response.data.user.id);
-          this.props.setUser();
-        }
+        // if (response.status === 201) {
+        //   this.setState({});
+        // }
       })
       .catch(error => {
-        console.log(error.response.data.message);
+        console.log("Error", error);
       });
   };
 

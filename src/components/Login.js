@@ -27,20 +27,20 @@ class Login extends React.Component {
       } else {
         axios
           .post("https://insta.nextacademy.com/api/v1/login", {
-            email: email,
-            password: password
+            email,
+            password
           })
           .then(response => {
             if (response.status === 201) {
               localStorage.setItem("jwt", response.data.auth_token);
               localStorage.setItem("id", response.data.user.id);
-              this.props.setUser();
+              this.props.setUser(response.data);
             } else {
               alert("please check your email/password");
             }
           })
           .catch(error => {
-            console.log(error.response);
+            console.log("Error ", error.response.data.message);
           });
       }
     });
@@ -82,7 +82,11 @@ class Login extends React.Component {
             <Button
               color="primary"
               disabled={!isEnabled}
-              onClick={this.handleSubmit}
+              onClick={e => {
+                // First function runs second, causing problems
+                this.handleSubmit(e);
+                // setTimeout(context.setUser(), 5000);
+              }}
             >
               Log In
             </Button>
