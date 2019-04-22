@@ -1,13 +1,21 @@
 import React from "react";
 import axios from "axios";
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormFeedback,
+  FormGroup,
+  Input,
+  Label
+} from "reactstrap";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorMsg: []
     };
   }
 
@@ -35,19 +43,19 @@ class Login extends React.Component {
               localStorage.setItem("jwt", response.data.auth_token);
               localStorage.setItem("id", response.data.user.id);
               this.props.setUser(response.data);
-            } else {
-              alert("please check your email/password");
             }
           })
           .catch(error => {
-            console.log("Error ", error.response.data.message);
+            this.setState({
+              errorMsg: "Incorrect email or password"
+            });
           });
       }
     });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errorMsg } = this.state;
     const isEnabled = email.length > 0 && password.length > 0;
 
     return (
@@ -55,16 +63,19 @@ class Login extends React.Component {
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input
+            invalid={Boolean(errorMsg.length)}
             type="email"
             name="email"
             id="loginEmail"
             placeholder=""
             onChange={this.handleChange}
           />
+          <FormFeedback>{errorMsg}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label for="examplePassword">Password</Label>
           <Input
+            invalid={Boolean(errorMsg.length)}
             type="password"
             name="password"
             id="loginPassword"

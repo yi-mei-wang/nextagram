@@ -38,7 +38,6 @@ class LoginOrSignUp extends React.Component {
     return (
       <SetUserConsumer>
         {context => {
-          console.log("----------", context);
           return (
             <div>
               <div onClick={this.toggle}>{this.props.label}</div>
@@ -57,7 +56,10 @@ class LoginOrSignUp extends React.Component {
                       handleClick={this.handleClick}
                     />
                   ) : (
-                    <SignUp handleClick={this.handleClick} />
+                    <SignUp
+                      setUser={context.setUser}
+                      handleClick={this.handleClick}
+                    />
                   )}
                 </ModalBody>
               </Modal>
