@@ -17,7 +17,7 @@ class UserProfilePage extends React.Component {
 
     return (
       <div className="profile-page-container mx-auto mt-3 p-3 d-flex">
-        <div className="row my-5 mx-5 w-100">
+        <div className="row my-5 mx-5">
           <div className="col-4">
             <img
               src={userInfo && userInfo.profileImage}
@@ -73,7 +73,7 @@ class UserProfilePage extends React.Component {
             </div>
           </article>
         </div>
-        <div className="user-imgs pt-5 d-block">
+        <div className="user-imgs pt-5">
           <UserImages images={images} />
         </div>
       </div>

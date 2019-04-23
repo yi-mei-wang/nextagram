@@ -50,6 +50,7 @@ class SignUp extends React.Component {
         password
       })
       .then(response => {
+<<<<<<< HEAD
         if (response.status === 201) {
           localStorage.setItem("jwt", response.data.auth_token);
           localStorage.setItem("id", response.data.user.id);
@@ -60,6 +61,15 @@ class SignUp extends React.Component {
         this.setState({
           errorMsg: error.response.data.message
         });
+=======
+        console.log(response);
+        // if (response.status === 201) {
+        //   this.setState({});
+        // }
+      })
+      .catch(error => {
+        console.log("Error", error);
+>>>>>>> 578c0ebecbb5ecf987be855522fd17c3c249dfb3
       });
   };
 
