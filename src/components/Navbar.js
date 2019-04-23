@@ -53,7 +53,7 @@ class NavBar extends React.Component {
             className="d-flex align-items-center col-3 col-sm-5"
           >
             <div
-              className="d-flex justify-content-center align-items-center"
+              className="d-flex justify-content-center align-items-center ml-0 pl-0"
               id="icontainer"
             >
               <img className="mr-2" src={Camera} id="icon" alt="Camera logo" />

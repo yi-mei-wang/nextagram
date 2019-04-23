@@ -30,7 +30,7 @@ const UserImages = ({ images }) => {
     return (
       <div className="d-inline-block">
         <div>
-          <img src={NoImages} className="no-img" alt="No posts yet" />
+          <Image src={NoImages} className="no-img" alt="No posts yet" />
         </div>
       </div>
     );

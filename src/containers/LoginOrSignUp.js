@@ -4,6 +4,7 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 // USER-DEFINED COMPONENTS
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
+import { SetUserConsumer } from "../App";
 
 class LoginOrSignUp extends React.Component {
   constructor(props) {
@@ -35,31 +36,37 @@ class LoginOrSignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <div onClick={this.toggle}>{this.props.label}</div>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.isLoginForm ? "Login" : "Sign Up"}
-          </ModalHeader>
-          <ModalBody>
-            {this.state.isLoginForm ? (
-              <Login
-                handleClick={this.handleClick}
-                setUser={this.props.setUser}
-              />
-            ) : (
-              <SignUp
-                handleClick={this.handleClick}
-                setUser={this.props.setUser}
-              />
-            )}
-          </ModalBody>
-        </Modal>
-      </div>
+      <SetUserConsumer>
+        {context => {
+          return (
+            <div>
+              <div onClick={this.toggle}>{this.props.label}</div>
+              <Modal
+                isOpen={this.state.modal}
+                toggle={this.toggle}
+                className={this.props.className}
+              >
+                <ModalHeader toggle={this.toggle}>
+                  {this.state.isLoginForm ? "Login" : "Sign Up"}
+                </ModalHeader>
+                <ModalBody>
+                  {this.state.isLoginForm ? (
+                    <Login
+                      setUser={context.setUser}
+                      handleClick={this.handleClick}
+                    />
+                  ) : (
+                    <SignUp
+                      setUser={context.setUser}
+                      handleClick={this.handleClick}
+                    />
+                  )}
+                </ModalBody>
+              </Modal>
+            </div>
+          );
+        }}
+      </SetUserConsumer>
     );
   }
 }
