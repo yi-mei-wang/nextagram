@@ -100,9 +100,7 @@ class SignUp extends React.Component {
 
           <Label for="formEmail">Email</Label>
           <Input
-            invalid={Boolean(
-              errorMsg.filter(msg => msg.includes("Email")).length
-            )}
+            invalid={!!errorMsg.filter(msg => msg.includes("Email")).length}
             value={this.state.email}
             onChange={this.handleChange}
             type="email"
