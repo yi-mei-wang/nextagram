@@ -38,10 +38,6 @@ class LoginOrSignUp extends React.Component {
     return (
       <SetUserConsumer>
         {context => {
-<<<<<<< HEAD
-=======
-          console.log("----------", context);
->>>>>>> 578c0ebecbb5ecf987be855522fd17c3c249dfb3
           return (
             <div>
               <div onClick={this.toggle}>{this.props.label}</div>
